@@ -8,16 +8,16 @@ openai.api_key = st.secrets["OPENROUTER_API_KEY"]
 
 st.title("JordanAI")
 
-# Initializing the chat history between user and bot
+# The chat history between user and bot
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant."}]
+    st.session_state.messages = [{"role": "system", "content": "You are really helpful, Jordan."}]
+    
 
-# User input
+# User input field
 user_input = st.text_input("You:", key="input")
 
 if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
-    # st.session_state.input = ""  # ✅ Clear the input field after submission
 
     with st.spinner("Thinking..."):
         response = requests.post(
@@ -34,7 +34,7 @@ if user_input:
 
         if response.status_code == 200:
             reply = response.json()["choices"][0]["message"]["content"]
-            st.session_state.messages.append({"role": "assistant", "content": reply})
+            st.session_state.messages.append({"role": "jordan", "content": reply})
         else:
             st.error(f"Error: {response.status_code} - {response.text}")
 
@@ -42,3 +42,8 @@ if user_input:
 for msg in st.session_state.messages:
     if msg["role"] != "system":
         st.markdown(f"**{msg['role'].capitalize()}**: {msg['content']}")
+
+
+
+
+
