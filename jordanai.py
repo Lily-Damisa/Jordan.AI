@@ -6,11 +6,11 @@ import requests
 openai.base_url = "https://openrouter.ai/api/v1"
 openai.api_key = st.secrets["OPENROUTER_API_KEY"]
 
-st.title("JordanAI")
+st.title("WellMama")
 
 # The chat history between user and bot
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "system", "content": "You are really helpful, Jordan."}]
+    st.session_state.messages = [{"role": "system", "content": "You are really helpful, WellMama."}]
     
 
 # User input field
@@ -34,7 +34,7 @@ if user_input:
 
         if response.status_code == 200:
             reply = response.json()["choices"][0]["message"]["content"]
-            st.session_state.messages.append({"role": "jordan", "content": reply})
+            st.session_state.messages.append({"role": "wellmama", "content": reply})
         else:
             st.error(f"Error: {response.status_code} - {response.text}")
 
