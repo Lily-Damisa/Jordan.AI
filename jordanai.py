@@ -8,6 +8,59 @@ openai.api_key = st.secrets["OPENROUTER_API_KEY"]
 
 st.title("WellMama")
 
+st.markdown(
+    """
+    <style>
+    /* Main title */
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #C2185B;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    /* Chat bubbles */
+    .user-bubble {
+        background-color: #E1F5FE;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 5px 0;
+        color: #01579B;
+        width: fit-content;
+        max-width: 80%;
+    }
+
+    .bot-bubble {
+        background-color: #F8BBD0;
+        padding: 10px;
+        border-radius: 10px;
+        margin: 5px 0;
+        color: #880E4F;
+        width: fit-content;
+        max-width: 80%;
+    }
+
+    /* Center the bot messages on the left and user messages on the right */
+    .bot-container {
+        display: flex;
+        justify-content: flex-start;
+    }
+    .user-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* Input box styling */
+    .stTextInput>div>div>input {
+        border-radius: 8px;
+        border: 1px solid #C2185B;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # The chat history between user and bot
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "system", "content": "You are really helpful, WellMama."}]
